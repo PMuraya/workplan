@@ -1,0 +1,16 @@
+{
+	"folders": [
+		{
+			"path": "../../../outlook"
+		},
+		{
+			"path": "../../../schema"
+		},
+		{
+			"path": "."
+		}
+	],
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "code"
+	}
+}

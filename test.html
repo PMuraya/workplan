@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+    </head>
+    <body>
+        <div>TODO write content</div>
+        <textarea id="markdownInput" rows="10" cols="50"></textarea>
+        <div id="markdownOutput"></div>
+        <script>
+            // Get the textarea element
+            var markdownInput = document.getElementById('markdownInput');
+            
+            // Get the container where the rendered Markdown will be displayed
+            var markdownOutput = document.getElementById('markdownOutput');
+        
+            // Add an event listener to the textarea to render Markdown when the input changes
+            markdownInput.addEventListener('input', function() {
+                // Get the Markdown input from the textarea
+                var markdownText = markdownInput.value;
+        
+                // Convert the Markdown text to HTML using marked.js
+                var htmlText = marked.parse(markdownText);
+        
+                // Set the inner HTML of the container to the rendered Markdown HTML
+                markdownOutput.innerHTML = htmlText;
+            });
+        </script>
+        
+    </body>
+</html>

@@ -1,0 +1,98 @@
+/*
+Let the html and body occupy the entire screen
+*/
+html, body{
+    height:100%;
+    width:100%;
+}
+/*
+Make all elements large enough for projection*/
+*{
+    font-family: sans-serif;
+}
+
+/*
+Collapse the cell borders*/
+table{
+    border-collapse:collapse;
+}
+/*
+The elememt targeted for display using a grid-area method is the body
+*/
+body{
+    display:grid;
+    grid-template-areas:
+        "menu menu"
+        "presentation contribution"
+        "presentation detail"; 
+    /*
+    Ovverride the default grid area sizes. 
+    */
+    grid-template-columns:1fr 1fr;
+    grid-template-rows:1fr 10fr 10fr;
+        
+}
+
+
+#menu{
+    grid-area:menu;
+    background-color:lightcyan;
+    display:flex;
+}
+
+#presentation{
+    grid-area:presentation;
+    background-color:rgb(255, 249, 242);
+    /*
+    Vertical and horizontal overflows should scroll
+    */
+    overflow:auto;
+    /*
+    Enlarge text for presentation purposes*/
+    font-size:medium;
+
+}
+
+#contribution{
+    grid-area:contribution;
+    background-color: azure;
+    overflow: auto;
+}
+
+#detail{
+    grid-area:detail;
+    background-color:lightcyan;
+}
+
+
+textarea{
+    height:100%;
+    width:100%;
+}
+
+/*
+Mark selectd tds and ts with different color*/
+td.selected {
+    background-color: lightblue;
+}
+tr.selected{
+    background-color:lightgoldenrodyellow;
+}
+
+/*
+Control the edit and normal views*/
+
+/*
+Hide all the normal mode elements of a selected td, thus putting it in edit mode*/
+td.selected .normal{
+    background-color:blueviolet;
+    display:none;
+}
+
+/*
+Hide all the edit marked elements under a td that is not  selected 
+*/
+td:not(.selected) .edit{
+    background-color:yellow;
+    display:none;
+}
