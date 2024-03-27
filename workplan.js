@@ -7,10 +7,10 @@ import { view } from "../../../outlook/v/code/outlook.js";
 import { exec } from '../../../schema/v/code/server.js';
 import { homozone, heterozone, glade } from "../../../outlook/v/code/zone.js";
 import { myalert } from '../../../outlook/v/code/view.js';
-export async function get_base_sql() {
+export async function get_base_sql(cwd) {
     //
     //Define the path to the sql
-    const path = '/tracker/v/workplan/workplan.sql';
+    const path = 'workplan.sql';
     //
     //The path is a file
     const is_file = true;
@@ -19,13 +19,14 @@ export async function get_base_sql() {
     const add_root = true;
     //
     //Get the sql statement
-    const sql = await exec('path', [path, is_file, add_root], 'get_file_contents', []);
+    const sql = await exec('path', [path, is_file, add_root], 'get_file_contents', [], cwd);
     //
     return sql;
 }
 //
 export class workplan extends view {
     base_cte;
+    cwd;
     //reating the date homozone requires access to the database
     date;
     //
@@ -57,9 +58,10 @@ export class workplan extends view {
     presentation_heterozone;
     contribution_heterozone;
     //
-    constructor(base_cte) {
+    constructor(base_cte, cwd) {
         super();
         this.base_cte = base_cte;
+        this.cwd = cwd;
         //
         //Set set the activity homozone
         this.activity = this.activity_create();
@@ -692,7 +694,7 @@ export class workplan extends view {
     async date_get_axis() {
         //
         //Read and execute the date query from a file
-        const result = await exec('database', ['tracker_mogaka', false], 'get_sql_data', ['/tracker/v/workplan/presentation_dates.sql', 'file']);
+        const result = await exec('database', ['tracker_mogaka', false], 'get_sql_data', ['presentation_dates.sql', 'file'], this.cwd);
         //
         //Map the resulting objects to strings
         return result.map(x => x.date);

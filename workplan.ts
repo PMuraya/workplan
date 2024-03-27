@@ -34,10 +34,10 @@ interface contribution extends cell_value{
     detail:string;
 } 
 
-export async function get_base_sql():Promise<string>{
+export async function get_base_sql(cwd:string):Promise<string>{
     //
     //Define the path to the sql
-    const path:string = '/tracker/v/workplan/workplan.sql';
+    const path:string = 'workplan.sql';
     //
     //The path is a file
     const is_file:boolean=true;
@@ -46,7 +46,7 @@ export async function get_base_sql():Promise<string>{
     const add_root:boolean = true;
     //
     //Get the sql statement
-    const sql:string = await exec('path',[path, is_file, add_root], 'get_file_contents', []);
+    const sql:string = await exec('path',[path, is_file, add_root], 'get_file_contents', [],cwd);
      //
      return sql;
 } 
@@ -87,7 +87,7 @@ export class workplan extends view{
     public contribution_heterozone?:heterozone;
     
     //
-    constructor(public base_cte:string){
+    constructor(public base_cte:string,public cwd:string){
         super();
          //
         //Set set the activity homozone
@@ -733,7 +733,8 @@ export class workplan extends view{
             'database',
             ['tracker_mogaka', false],
             'get_sql_data',
-            ['/tracker/v/workplan/presentation_dates.sql', 'file']
+            ['presentation_dates.sql', 'file'],
+            this.cwd
         );
         //
         //Map the resulting objects to strings

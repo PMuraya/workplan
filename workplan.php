@@ -1,3 +1,9 @@
+<?php
+//
+//Get the directory from where this file was launched form
+$cwd = dirname($_SERVER['SCRIPT_NAME']);
+?>
+
 <!DOCTYPE html> 
 <!--
 Demosttaing the zone idea using school exam data
@@ -21,17 +27,17 @@ Demosttaing the zone idea using school exam data
             window.onload = async()=>{
                 //
                 //Get the base sql
-                const sql = await get_base_sql();
+                const sql = await get_base_sql(<?php echo '"'.$cwd.'"'?>);
                 //
                 //Create an exam page
-                const page = new workplan(sql);
+                const page = new workplan(sql,<?php echo '"'.$cwd.'"'?>);
                 //
                 //Show the 5th sitting
                 await page.show();
                 //
                 //Expose the page
                 window.page = page;
-            }
+            };
 
         </script>
     </head>
