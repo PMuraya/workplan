@@ -6,7 +6,7 @@ $cwd = dirname($_SERVER['SCRIPT_NAME']);
 
 <!DOCTYPE html> 
 <!--
-Demosttaing the zone idea using school exam data
+Demostrating the zone idea using school exam data
 -->
 <html>
     <head>

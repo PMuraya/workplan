@@ -141,7 +141,7 @@ export class workplan extends view {
         const labels = [...this.textarea_collect_labels(cell)];
         //
         //Save the collection 
-        const result = await exec('questionnaire', ['tracker_mogaka'], 'load_common', [labels]);
+        const result = await exec('questionnaire', ['tracker_mogaka'], 'load_common', [labels], this.cwd);
         if (result !== 'ok')
             throw new mutall_error(result);
         //
@@ -509,7 +509,7 @@ export class workplan extends view {
         const labels = [...this.activity_collect(cell)];
         //
         //Use the labels to save the correspinding data
-        const result = await exec('questionnaire', ['tracker_mogaka'], 'load_common', [labels]);
+        const result = await exec('questionnaire', ['tracker_mogaka'], 'load_common', [labels], this.cwd);
         //Report errors,if any
         if (result !== 'ok')
             myalert(result);
@@ -667,7 +667,7 @@ export class workplan extends view {
         }
         //
         //Save the collection 
-        const result = await exec('questionnaire', ['tracker_mogaka'], 'load_common', [labels]);
+        const result = await exec('questionnaire', ['tracker_mogaka'], 'load_common', [labels], this.cwd);
         //
         //Alert only if there is a problem    
         if (result !== 'ok')

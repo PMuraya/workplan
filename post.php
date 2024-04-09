@@ -21,8 +21,8 @@ $post = $_SERVER['DOCUMENT_ROOT'].'/schema/v/code/post.json';
 mutall::set_globals($post);
 //
 //Show the the inputs
-//echo "<pre>".json_encode($GLOBALS)."</pre>";
+echo "<pre>".json_encode($GLOBALS)."</pre>";
 //
 //Execute the posted request and show the result
-$result = mutall::fetch();
-echo "<pre>".json_encode($result)."</pre>";
+//$result = mutall::fetch();
+//echo "<pre>".json_encode($result)."</pre>";
