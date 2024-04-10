@@ -7,6 +7,9 @@ import { view } from "../../../outlook/v/code/outlook.js";
 import { exec } from '../../../schema/v/code/server.js';
 import { homozone, heterozone, glade } from "../../../outlook/v/code/zone.js";
 import { myalert } from '../../../outlook/v/code/view.js';
+//
+//Global variable for accessing the current working directory
+export var current_working_directory;
 export async function get_base_sql(cwd) {
     //
     //Define the path to the sql
@@ -75,6 +78,9 @@ export class workplan extends view {
         this.contributor = this.get_element('contributor');
         //
         this.activity_hidden = this.activity_hidden_create();
+        //
+        //Set the global current working directory
+        current_working_directory = cwd;
     }
     //Togg
     view_toggle_projector(button) {

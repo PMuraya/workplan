@@ -11,6 +11,9 @@ import {zone, homozone, heterozone, driver_source, glade, cell, cell_value, obj
 } from "../../../outlook/v/code/zone.js";
 
 import {myalert} from '../../../outlook/v/code/view.js';
+//
+//Global variable for accessing the current working directory
+export var current_working_directory:string;
 
 //The code for the marked function is brought in here via teh contemt deliverly 
 //network, CDN. This requires access to the internet. The alternative method is
@@ -103,6 +106,9 @@ export class workplan extends view{
         this.contributor = <HTMLSelectElement>this.get_element('contributor');
         //
         this.activity_hidden=this.activity_hidden_create();
+        //
+        //Set the global current working directory
+        current_working_directory=cwd; 
     }
 
     //Togg
