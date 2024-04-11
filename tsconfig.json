@@ -2,7 +2,5 @@
   "extends": "../../../schema/v/code/tsconfig.json",
   "compilerOptions": {
    },
-   "exclude": [
-    "./zone.ts"
-   ]
+   
 }

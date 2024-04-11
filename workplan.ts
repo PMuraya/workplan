@@ -599,7 +599,7 @@ export class workplan extends view{
             ${this.base_cte} 
             select * from presentation`;
         //
-        //Compile teh driver source
+        //Compile the driver source
         const driver_source:driver_source = {
             type:'sql.long', 
             sql, 
@@ -609,11 +609,14 @@ export class workplan extends view{
             dbname:'tracker_mogaka'
         }
         //
-        //Clicking on a presentation cell creates creates and shows controbution 
-        //heterozonetable and clears the textarea 
+        //Clicking on a presentation cell creates and shows contribution 
+        //heterozone and clears the textarea 
         const onclick:onclick = async (cell)=>{
             //
-            //Creates the controbution hetereozone 
+            //Set the current cell of teh presention homozone
+            this.presentation.cell = cell;
+            //
+            //Creates the contribution hetereozone 
             this.contribution_heterozone = await this.contribution_heterozone_create(cell);
             //
             //Show the zone

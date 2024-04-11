@@ -12,7 +12,7 @@ import { myalert } from '../../../outlook/v/code/view.js';
 export var current_working_directory;
 export async function get_base_sql(cwd) {
     //
-    //Define the path to the sql
+    //Define the path to the sql. NB. The path is relative to the cwd
     const path = 'workplan.sql';
     //
     //The path is a file
@@ -60,7 +60,8 @@ export class workplan extends view {
     //
     presentation_heterozone;
     contribution_heterozone;
-    //
+    //NB. The current working directory (cwd) is used for resolving relative 
+    //paths. 
     constructor(base_cte, cwd) {
         super();
         this.base_cte = base_cte;
@@ -561,7 +562,7 @@ export class workplan extends view {
             ${this.base_cte} 
             select * from presentation`;
         //
-        //Compile teh driver source
+        //Compile the driver source
         const driver_source = {
             type: 'sql.long',
             sql,
@@ -571,11 +572,14 @@ export class workplan extends view {
             dbname: 'tracker_mogaka'
         };
         //
-        //Clicking on a presentation cell creates creates and shows controbution 
-        //heterozonetable and clears the textarea 
+        //Clicking on a presentation cell creates and shows contribution 
+        //heterozone and clears the textarea 
         const onclick = async (cell) => {
             //
-            //Creates the controbution hetereozone 
+            //Set the current cell of teh presention homozone
+            this.presentation.cell = cell;
+            //
+            //Creates the contribution hetereozone 
             this.contribution_heterozone = await this.contribution_heterozone_create(cell);
             //
             //Show the zone
