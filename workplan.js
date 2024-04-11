@@ -7,10 +7,13 @@ import { view } from "../../../outlook/v/code/outlook.js";
 import { exec } from '../../../schema/v/code/server.js';
 import { homozone, heterozone, glade } from "../../../outlook/v/code/zone.js";
 import { myalert } from '../../../outlook/v/code/view.js';
-export async function get_base_sql() {
+//
+//Global variable for accessing the current working directory
+export var current_working_directory;
+export async function get_base_sql(cwd) {
     //
     //Define the path to the sql
-    const path = '/tracker/v/workplan/workplan.sql';
+    const path = 'workplan.sql';
     //
     //The path is a file
     const is_file = true;
@@ -19,13 +22,14 @@ export async function get_base_sql() {
     const add_root = true;
     //
     //Get the sql statement
-    const sql = await exec('path', [path, is_file, add_root], 'get_file_contents', []);
+    const sql = await exec('path', [path, is_file, add_root], 'get_file_contents', [], cwd);
     //
     return sql;
 }
 //
 export class workplan extends view {
     base_cte;
+    cwd;
     //reating the date homozone requires access to the database
     date;
     //
@@ -57,9 +61,10 @@ export class workplan extends view {
     presentation_heterozone;
     contribution_heterozone;
     //
-    constructor(base_cte) {
+    constructor(base_cte, cwd) {
         super();
         this.base_cte = base_cte;
+        this.cwd = cwd;
         //
         //Set set the activity homozone
         this.activity = this.activity_create();
@@ -73,6 +78,9 @@ export class workplan extends view {
         this.contributor = this.get_element('contributor');
         //
         this.activity_hidden = this.activity_hidden_create();
+        //
+        //Set the global current working directory
+        current_working_directory = cwd;
     }
     //Togg
     view_toggle_projector(button) {
@@ -139,7 +147,7 @@ export class workplan extends view {
         const labels = [...this.textarea_collect_labels(cell)];
         //
         //Save the collection 
-        const result = await exec('questionnaire', ['tracker_mogaka'], 'load_common', [labels]);
+        const result = await exec('questionnaire', ['tracker_mogaka'], 'load_common', [labels], this.cwd);
         if (result !== 'ok')
             throw new mutall_error(result);
         //
@@ -507,7 +515,7 @@ export class workplan extends view {
         const labels = [...this.activity_collect(cell)];
         //
         //Use the labels to save the correspinding data
-        const result = await exec('questionnaire', ['tracker_mogaka'], 'load_common', [labels]);
+        const result = await exec('questionnaire', ['tracker_mogaka'], 'load_common', [labels], this.cwd);
         //Report errors,if any
         if (result !== 'ok')
             myalert(result);
@@ -665,7 +673,7 @@ export class workplan extends view {
         }
         //
         //Save the collection 
-        const result = await exec('questionnaire', ['tracker_mogaka'], 'load_common', [labels]);
+        const result = await exec('questionnaire', ['tracker_mogaka'], 'load_common', [labels], this.cwd);
         //
         //Alert only if there is a problem    
         if (result !== 'ok')
@@ -692,7 +700,7 @@ export class workplan extends view {
     async date_get_axis() {
         //
         //Read and execute the date query from a file
-        const result = await exec('database', ['tracker_mogaka', false], 'get_sql_data', ['/tracker/v/workplan/presentation_dates.sql', 'file']);
+        const result = await exec('database', ['tracker_mogaka', false], 'get_sql_data', ['presentation_dates.sql', 'file'], this.cwd);
         //
         //Map the resulting objects to strings
         return result.map(x => x.date);
