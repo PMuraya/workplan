@@ -579,6 +579,12 @@ export class workplan extends view {
             //Set the current cell of teh presention homozone
             this.presentation.cell = cell;
             //
+            //Let the reference cell of the parent homozone be this cell. This is
+            //important because its the cell that links different heterozone. In
+            //future, there will be only one cell per heterozone (rather than 
+            //every zone having its own cell)  
+            this.presentation_heterozone.cell = cell;
+            //
             //Creates the contribution hetereozone 
             this.contribution_heterozone = await this.contribution_heterozone_create(cell);
             //
