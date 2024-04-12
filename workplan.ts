@@ -8,7 +8,7 @@ import {label} from '../../../schema/v/code/questionnaire.js';
 import {exec} from '../../../schema/v/code/server.js'
 
 import {zone, homozone, heterozone, driver_source, glade, cell, cell_value, obj
-} from "../../../outlook/v/code/zone.js";
+} from "./zone.js";
 
 import {myalert} from '../../../outlook/v/code/view.js';
 //
