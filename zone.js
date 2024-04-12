@@ -3,7 +3,7 @@ import { view } from "../../../outlook/v/code/view.js";
 import { mutall_error } from "../../../schema/v/code/schema.js";
 import { exec } from "../../../schema/v/code/server.js";
 import { io } from "../../../schema/v/code/io.js";
-import { current_working_directory as cwd } from "../../../tracker/v/workplan/workplan.js";
+import { current_working_directory as cwd } from "./workplan.js";
 //Modelling the panels that take part in the neigbourhood strategy.
 export class zone extends view {
     parent;

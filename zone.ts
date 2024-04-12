@@ -1,10 +1,10 @@
 //The panel hierarchy
-import {view} from "./v/code/view.js";
-import {basic_value, mutall_error, fuel, cname}  from "../schema/v/code/schema.js";
-import {exec} from "../schema/v/code/server.js";
-import {io, io_type, anchor} from "../schema/v/code/io.js";
-import { metadata } from "../schema/v/code/library.js";
-import {current_working_directory as cwd} from "../tracker/v/workplan/workplan.js"
+import {view} from "../../../outlook/v/code/view.js";
+import {basic_value, mutall_error, fuel, cname}  from "../../../schema/v/code/schema.js";
+import {exec} from "../../../schema/v/code/server.js";
+import {io, io_type, anchor} from "../../../schema/v/code/io.js";
+import { metadata } from "../../../schema/v/code/library.js";
+import {current_working_directory as cwd} from "./workplan.js"
 //
 //Define a cell_value. Users can extend this type to defne thier own
 export type cell_value = {value:basic_value};

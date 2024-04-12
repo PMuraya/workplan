@@ -5,7 +5,7 @@ Concepts
 import { mutall_error } from "../../../schema/v/code/schema.js";
 import { view } from "../../../outlook/v/code/outlook.js";
 import { exec } from '../../../schema/v/code/server.js';
-import { homozone, heterozone, glade } from "../../../outlook/zone.js";
+import { homozone, heterozone, glade } from "./zone.js";
 import { myalert } from '../../../outlook/v/code/view.js';
 //
 //Global variable for accessing the current working directory
