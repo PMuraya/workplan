@@ -11,16 +11,10 @@ Make all elements large enough for projection*/
     font-family: sans-serif;
 }
 
-
+/*
+Collapse the cell borders*/
 table{
-    /*
-    Collapse the cell borders*/
     border-collapse:collapse;
-    
-    /*
-    The table should fill the entire containerf*/
-    width:100%;
-    
 }
 /*
 The elememt targeted for display using a grid-area method is the body
@@ -28,17 +22,17 @@ The elememt targeted for display using a grid-area method is the body
 body{
     display:grid;
     grid-template-areas:
-        "menu menu"
-        "presentation contribution"
-        "presentation detail"; 
+        "menu"
+        "presentation"
+        "contribution"
+        "detail"; 
     /*
-    Override the default grid area sizes. 
+    Ovverride the default grid area sizes. 
     */
-    grid-template-columns:1fr 1fr;
-    grid-template-rows:1fr 10fr 10fr;
-    overflow: hidden;
+    grid-template-rows:1fr 4fr 2fr 2fr;
         
 }
+
 
 #menu{
     grid-area:menu;
@@ -58,27 +52,12 @@ body{
     font-size:medium;
 
 }
-/*Freeze the acivity column in the presentation heterozone*/
-#presentation td:nth-child(7){
-    position:sticky;
-    left:0;    
-}
-/*
-Freeze the date row of teh presenttaion heterozone*/
-#presentation tr:nth-child(1){
-    position:sticky;
-    top:0;    
-}
 
 #contribution{
     grid-area:contribution;
     background-color: azure;
     overflow: auto;
 }
-
-/*
-Let teh table occupy the entire width*/
-
 
 #detail{
     grid-area:detail;
@@ -116,29 +95,4 @@ Hide all the edit marked elements under a td that is not  selected
 td:not(.selected) .edit{
     background-color:yellow;
     display:none;
-}
-
-/* Design the mobile view */
-@media screen and (min-width: 640px) {
-    /*
-    Display the body in portrait mode on smaller devices
-    */
-    body {
-        display:grid;
-        grid-template-areas:
-            "menu"
-            "presentation"
-            "contribution"
-            "detail"; 
-        /*
-        Ovverride the default grid area sizes. 
-        */
-        grid-template-columns:1fr;
-        grid-template-rows:1fr 6fr 4fr 2fr;        
-    }
-
-    /* Make the font legible */
-    *{
-        font-size:40px;
-    }
 }
